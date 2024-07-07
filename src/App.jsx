@@ -1,3 +1,18 @@
-export default function App() {
-	return <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>;
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home/home.jsx";
+import LogIn from "./pages/login/login.jsx";
+import SignUp from "./pages/signup/signup.jsx";
+import Upload from "./pages/upload/upload.jsx";
+
+function App() {
+	return (
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/signup" element={<SignUp />} />
+			<Route path="/login" element={<LogIn />} />
+			<Route path="/upload" element={<Upload />} />
+		</Routes>
+	);
 }
+
+export default App;
