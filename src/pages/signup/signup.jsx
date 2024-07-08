@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react"
 
-async function adduser(email, pass, setErrMsg) {
+async function adduser(email, username, pass, setErrMsg) {
 	const url = "http://localhost:8000/signup";
 
 	const options = {
@@ -14,6 +14,7 @@ async function adduser(email, pass, setErrMsg) {
 		},
 		body: JSON.stringify({
 			email: email,
+			username: username,
 			pass: pass
 		})
 	};
@@ -33,11 +34,12 @@ async function adduser(email, pass, setErrMsg) {
 const SignUp = () => {
 	const [pass, setPass] = useState("")
 	const [email, setEmail] = useState("")
+	const [username, setUserName] = useState("")
 	const [errMsg, setErrMsg] = useState({})
 
 	function handleSubmit(e) {
 		e.preventDefault()
-		adduser(email, pass, setErrMsg)
+		adduser(email, username, pass, setErrMsg)
 
 	}
 	return (
@@ -60,6 +62,8 @@ const SignUp = () => {
 								type="text"
 								id="name"
 								className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								value={username}
+								onChange={(e) => setUserName(e.target.value)}
 							/>
 						</div>
 						<div className="mb-4">
