@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import * as pdfJS from "pdfjs-dist/build/pdf";
 
-const PDFProcessor = () => {
-	const [answers, setAnswers] = useState([]);
+const PDFProcessor = ({ answers, setAnswers, handleSubmit }) => {
+	// const [answers, setAnswers] = useState([]);
 	const [error, setError] = useState(null);
 	const [editable, setEditable] = useState(false);
 
@@ -68,11 +68,6 @@ const PDFProcessor = () => {
 		setEditable(!editable);
 	};
 
-	// Handle data submit
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		console.log("Submitting answers:", answers);
-	};
 
 	// Show answers in 4 columns
 	const splitIntoColumns = (arr, numColumns) => {
@@ -124,11 +119,10 @@ const PDFProcessor = () => {
 											{[1, 2, 3, 4].map((option) => (
 												<li key={option} className="relative">
 													<div
-														className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${
-															answer === option
-																? "bg-green-500 border-green-500"
-																: "border-gray-300"
-														}`}
+														className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${answer === option
+															? "bg-green-500 border-green-500"
+															: "border-gray-300"
+															}`}
 													>
 														{answer === option && (
 															<span className="block w-2 h-2 bg-white rounded-full"></span>
