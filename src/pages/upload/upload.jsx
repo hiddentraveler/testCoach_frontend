@@ -124,7 +124,11 @@ export default function Upload() {
             <label htmlFor="omr">Omr: </label>
             <input type="file" id="omr" onChange={handleFileChange} />
           </div>
-          <PDFProcessor setAnswers={setAnswers} handleSubmit={handleSubmit} answers={answers} />
+          <PDFProcessor
+            setAnswers={setAnswers}
+            handleSubmit={handleSubmit}
+            answers={answers}
+          />
         </div>
       )}
     </>

@@ -21,7 +21,8 @@ const PDFProcessor = ({ answers, setAnswers, handleSubmit }) => {
   };
 
   const processPDF = async (file) => {
-    pdfJS.GlobalWorkerOptions.workerSrc = window.location.origin + "/pdf.worker.min.mjs";
+    pdfJS.GlobalWorkerOptions.workerSrc =
+      window.location.origin + "/pdf.worker.min.mjs";
     const pdf = await pdfJS.getDocument(URL.createObjectURL(file)).promise;
     let textContent = "";
 
@@ -54,7 +55,9 @@ const PDFProcessor = ({ answers, setAnswers, handleSubmit }) => {
 
     matches.forEach((match) => {
       const questionNumber = parseInt(match[1]);
-      const answer = parseInt(match[2]) ? parseInt(match[2]) : answerMap[match[2]];
+      const answer = parseInt(match[2])
+        ? parseInt(match[2])
+        : answerMap[match[2]];
       if (!answers[questionNumber]) {
         answers[questionNumber] = answer;
       }
@@ -104,7 +107,9 @@ const PDFProcessor = ({ answers, setAnswers, handleSubmit }) => {
       <div>
         <div className="flex flex-col items-center underline pb-4">
           {answers.length > 0 && (
-            <h2 className="text-2xl font-semibold mt-4 mb-2">Processed Answers</h2>
+            <h2 className="text-2xl font-semibold mt-4 mb-2">
+              Processed Answers
+            </h2>
           )}
         </div>
         <ul className="list-disc pl-5 space-y-4">
@@ -123,7 +128,10 @@ const PDFProcessor = ({ answers, setAnswers, handleSubmit }) => {
                   </ul>
                 )}
                 {column.map(({ question, answer }) => (
-                  <li key={question} className="text-gray-700 flex items-center">
+                  <li
+                    key={question}
+                    className="text-gray-700 flex items-center"
+                  >
                     <span className="font-semibold mr-4">
                       {question.toString().padStart(3, "0")}.
                     </span>
