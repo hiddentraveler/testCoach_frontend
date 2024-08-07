@@ -1,17 +1,23 @@
 import { useState } from "react";
 
-async function bulkeval(files) {
-  for (let i = 0; i < files.length; i++) {
-    if (!files[i]) {
+async function bulkeval(inputs, csv) {
+  for (let i = 0; i < inputs.length; i++) {
+    if (!inputs[i]) {
       return;
     }
   }
 
-  const forData = new FormData();
-  for (let i = 0; i < files.length; i++) {
-    forData.append("files", files[i]);
+  if (!csv[0]) {
+    return;
   }
 
+  const forData = new FormData();
+
+  for (let i = 0; i < inputs.length; i++) {
+    forData.append("inputs", inputs[i]);
+  }
+
+  forData.append("csv", csv[0]);
   const url = "http://localhost:8000/bulkeval";
 
   const options = {
@@ -31,22 +37,33 @@ async function bulkeval(files) {
 }
 
 export default function BulkEval() {
-  const [files, setFiles] = useState(null);
+  const [inputs, setInputs] = useState(null);
+  const [csv, setCsv] = useState(null);
   function handleFileChange(e) {
     if (e.target.files) {
-      setFiles(e.target.files);
+      setInputs(e.target.files);
+    }
+  }
+
+  function handleCsv(e) {
+    if (e.target.files) {
+      setCsv(e.target.files);
     }
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    bulkeval(files);
-    console.log(files.length);
+    bulkeval(inputs, csv);
+    console.log(inputs.length);
+    console.log(csv[0]);
   };
 
   return (
     <>
+      <label htmlFor="omr">Omrs:</label>
       <input id="omr" onChange={handleFileChange} type="file" multiple />
+      <label htmlFor="csv">Ans Csv:</label>
+      <input id="csv" onChange={handleCsv} type="file" />
       <button
         type="button"
         onClick={handleSubmit}
