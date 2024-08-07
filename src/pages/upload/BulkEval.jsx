@@ -29,8 +29,15 @@ async function bulkeval(inputs, csv) {
   console.log(forData);
   try {
     const response = await fetch(url, options);
-    const result = await response.json();
-    console.log(result);
+    const blob = await response.blob();
+    const url2 = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url2;
+    a.download = "result.csv"; // The name of the file to be saved
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url2);
   } catch (e) {
     console.log(e);
   }
