@@ -57,6 +57,12 @@ export default function BulkEval() {
   const [inputs, setInputs] = useState(null);
   const [csv, setCsv] = useState(null);
   const [error, setError] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // if user is'nt there redirect to login
+  if (!user) {
+    window.location.assign("/login");
+  }
 
   function handleFileChange(e) {
     if (e.target.files) {

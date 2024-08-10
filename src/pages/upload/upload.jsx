@@ -46,6 +46,11 @@ export default function Upload() {
   const [error, setError] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
+  // if user is'nt there redirect to login
+  if (!user) {
+    window.location.assign("/login");
+  }
+
   // Handle data submit
   const handleSubmit = (event) => {
     event.preventDefault();
