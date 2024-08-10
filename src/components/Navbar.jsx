@@ -12,13 +12,22 @@ function Navbar() {
         <div className="font-bold text-1xl align-top h-6 w-1 bg-white rounded-sm"></div>
         <div className="font-bold text-xl">Test Coach</div>
       </Link>
-      <div>
+
+      <div className="flex space-x-2">
         <Link
           to={"/upload"}
           type="button"
           className="text-white bg-yellow-500 hover:bg-yellow-600 font-medium rounded-lg text-base px-3 py-1.5 text-center inline-flex items-center"
         >
-          Test Submit
+          Self Evaluation
+        </Link>
+
+        <Link
+          to={"/bulkeval"}
+          type="button"
+          className="text-white bg-red-500 hover:bg-red-600 font-medium rounded-lg text-base px-3 py-1.5 text-center inline-flex items-center"
+        >
+          Bulk Evaluation
         </Link>
       </div>
 

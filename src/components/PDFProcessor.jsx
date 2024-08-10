@@ -159,8 +159,8 @@ const PDFProcessor = ({ answers, setAnswers, handleSubmit }) => {
           </div>
         </ul>
       </div>
-
-      {answers.length > 0 && (
+      {/* TODO: To be added later */}
+      {/* {answers.length > 0 && (
         <div className="mt-4 space-x-4">
           <button
             type="button"
@@ -186,7 +186,7 @@ const PDFProcessor = ({ answers, setAnswers, handleSubmit }) => {
             Submit
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
