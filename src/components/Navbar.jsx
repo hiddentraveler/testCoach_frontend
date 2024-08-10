@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import logo from "./../assets/logo.png";
 
 function Navbar() {
+  function handleLogOut() {
+    localStorage.removeItem("user");
+    window.location.assign("/login");
+  }
   return (
     <div className="flex justify-between items-center px-4 py-1 border-b-2 border-gray-900 bg-green-100">
       <Link
@@ -31,13 +35,12 @@ function Navbar() {
         </Link>
       </div>
 
-      <Link
-        to="/login"
-        type="button"
+      <button
+        onClick={handleLogOut}
         className="text-white bg-sky-500 hover:bg-sky-600 font-medium rounded-lg text-base px-3 py-1.5 text-center inline-flex items-center"
       >
-        Login
-      </Link>
+        Log Out
+      </button>
     </div>
   );
 }
