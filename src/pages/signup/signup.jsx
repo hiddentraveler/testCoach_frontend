@@ -24,6 +24,9 @@ async function adduser(email, username, pass, setErrMsg) {
     const result = await response.json();
     console.log(result.msg);
     setErrMsg(result);
+    if (result.error == 0) {
+      window.location.assign("/");
+    }
   } catch (e) {
     console.log(e);
   }
