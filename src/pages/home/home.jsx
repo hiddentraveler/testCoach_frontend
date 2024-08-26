@@ -1,6 +1,28 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 
+async function deleteTest(testid) {
+  console.log(testid);
+  const url = "http://localhost:8000/api/delete";
+
+  const options = {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({ testid: testid }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 async function getPrivateTests(setLoading, setTests, id) {
   const url = "http://localhost:8000/";
 
@@ -109,7 +131,12 @@ export default function Home() {
                           {test.totalque}
                         </span>
                       </div>
-                      <div className="flex-shrink-0 h-8 w-8 bg-red-500 text-white rounded-full flex items-center justify-center ml-3">
+                      <div
+                        onClick={() => {
+                          deleteTest(test.testid);
+                        }}
+                        className="flex-shrink-0 h-8 w-8 bg-red-500 text-white rounded-full flex items-center justify-center ml-3"
+                      >
                         <svg
                           className="h-5 w-5 text-500"
                           viewBox="0 0 24 24"
